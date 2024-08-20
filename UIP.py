@@ -39,7 +39,6 @@ def calculate_R_ut(vector_path,query_list, term_list, model_path,data):
         t_vectors = pkl_read(vector_path)
     word_vectors = KeyedVectors.load_word2vec_format(model_path, limit=10000)
     u_vectors = np.array([word_vectors[word] for word in query_list])
-    # 计算余弦相似度矩阵
     epsilon = 1e-8
     R_ut = np.array([[np.dot(u_i, t_i) / (
                 (np.linalg.norm(u_i) + epsilon) * (np.linalg.norm(t_i) + epsilon))
